@@ -1,0 +1,23 @@
+{
+  "name": "toca",
+  "version": "0.0.1",
+  "description": "Toca metrics collector for React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adxl/toca.git"
+  },
+  "keywords": [
+    "analytics",
+    "react"
+  ],
+  "author": "Adel Sen, Coraline Esedji, Océane Renoux, Thomas Geoffron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adxl/toca/issues"
+  },
+  "homepage": "https://github.com/adxl/toca#readme"
+}

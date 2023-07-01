@@ -4,11 +4,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: [
-    "plugin:prettier/recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-  ],
+  extends: ["plugin:prettier/recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended"],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -33,7 +29,7 @@ module.exports = {
     "prettier/prettier": [
       "error",
       {
-        printWidth: 100,
+        printWidth: 150,
       },
     ],
     "react/prop-types": "off",

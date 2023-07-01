@@ -8,8 +8,9 @@
     ]
   },
   "main": "dist/toca.mjs",
+  "types": "dist/src/index.d.ts",
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && tsc --emitDeclarationOnly",
     "dev": "vite --port 4000",
     "serve": "vite preview"
   },

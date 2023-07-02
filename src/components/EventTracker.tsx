@@ -1,6 +1,7 @@
 import React from "react";
 
-// import { sendRequest } from "../api";
+import { sendRequest } from "../api";
+
 import { useTracking } from "./TrackingProvider";
 
 const events = {
@@ -26,8 +27,7 @@ const EventTracker: React.FC<Props> = ({ name, event, children }) => {
   const sendEvent = () => {
     console.debug(`[${event}] event triggered on [${name}] element`);
     const data = { name, eventType: event };
-    console.log(credentials, data);
-    // sendRequest("/events/tracking", credentials, data);
+    sendRequest("/events/tracking", credentials, data);
   };
 
   const eventFunctionName = events[event];

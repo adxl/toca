@@ -10,9 +10,7 @@
   "main": "dist/toca.mjs",
   "types": "dist/src/index.d.ts",
   "scripts": {
-    "build": "vite build && tsc --emitDeclarationOnly",
-    "dev": "vite --port 4000",
-    "serve": "vite preview"
+    "build": "vite build && tsc --emitDeclarationOnly"
   },
   "repository": {
     "type": "git",

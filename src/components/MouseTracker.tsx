@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { throttle } from "lodash";
 
 import { sendRequest } from "../api";
 
@@ -18,14 +19,14 @@ const MouseTracker: React.FC<Props> = ({ children }) => {
     sendRequest("/events/mouse-movements", credentials, data);
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handleMouseMove = throttle((e: React.MouseEvent) => {
     if (mouseAreaRef.current) {
       const { clientX, clientY } = e;
       const { top, left } = mouseAreaRef.current.getBoundingClientRect();
 
       sendEvent(clientX - left, clientY - top);
     }
-  };
+  }, 500);
 
   return (
     <div ref={mouseAreaRef} onMouseMove={handleMouseMove} style={{ display: "inline-block" }}>

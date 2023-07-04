@@ -24,7 +24,6 @@ const PageView: React.FC<Props> = ({ title, children }) => {
       "visibilitychange",
       () => {
         if (document.visibilityState === "visible") {
-          console.log("visible");
           sendEvent();
         }
       },

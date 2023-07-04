@@ -1,12 +1,31 @@
 import React, { useEffect, useRef } from "react";
 
+import { sendRequest } from "../api";
+
+import { useTracking } from "./TrackingProvider";
+
 type Props = {
   children: React.ReactNode;
 };
 
 const UserSession: React.FC<Props> = ({ children }) => {
+  const credentials = useTracking();
   const nameTabs = "toca_tabs_open";
   const timerRef = useRef<NodeJS.Timer | null>(null);
+
+  const sendEvent = () => {
+    console.log("Session ended");
+
+    const startsAt = new Date(Number(localStorage.getItem("toca_start_at")));
+    console.log('Number(localStorage.getItem("toca_start_at"))', Number(localStorage.getItem("toca_start_at")));
+    console.log("startsAt", startsAt);
+    const data = { startsAt, endedAt: new Date() };
+    console.log("data", data);
+
+    sendRequest("/events/user-sessions", credentials, data);
+    localStorage.removeItem("toca_start_at");
+    localStorage.removeItem("toca_ended_at");
+  };
 
   function getTabsOpen(): number {
     return Number(localStorage.getItem(nameTabs));
@@ -20,7 +39,8 @@ const UserSession: React.FC<Props> = ({ children }) => {
   function setTimerNoInteraction(): void {
     timerRef.current = setTimeout(() => {
       console.log("No interaction, session ended");
-      localStorage.setItem("toca_ended_at", String(Date.now()));
+      sendEvent();
+      localStorage.setItem("toca_start_at", String(Date.now()));
     }, 10000);
   }
 
@@ -47,6 +67,7 @@ const UserSession: React.FC<Props> = ({ children }) => {
 
       if (countTabsOpen < 1 || countTabsOpen === null) {
         localStorage.setItem("toca_ended_at", String(Date.now()));
+        sendEvent();
         e.returnValue = "Are you sure?";
       }
     });

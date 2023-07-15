@@ -1,6 +1,6 @@
 {
   "name": "toca",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "Toca metrics collector for React",
   "workspaces": {
     "packages": [
